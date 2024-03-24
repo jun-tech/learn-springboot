@@ -24,4 +24,58 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <resources>
+            <!-- 资源资源配置-->
+            <resource>
+                <directory>src/main/resources/</directory>
+                <!--打包时，先排除环境配置文件夹-->
+                <excludes>
+                    <exclude>env-dev/*</exclude>
+                    <exclude>env-test/*</exclude>
+                    <exclude>env-preview/*</exclude>
+                    <exclude>env-prod/*</exclude>
+                </excludes>
+                <includes>
+                    <!--如果有其他定义通用文件，需要包含进来-->
+                    <!--<include>messages/*</include>-->
+                </includes>
+            </resource>
+            <!--资源包含配置-->
+            <resource>
+                <directory>src/main/resources/${profiles.active}</directory>
+            </resource>
+        </resources>
+    </build>
+    <!-- 定义环境变量 -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profiles.active>env-dev</profiles.active>
+            </properties>
+            <activation>
+                <!--这个字段表示默认激活-->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profiles.active>env-test</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>preview</id>
+            <properties>
+                <profiles.active>env-preview</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profiles.active>env-prod</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 </project>
