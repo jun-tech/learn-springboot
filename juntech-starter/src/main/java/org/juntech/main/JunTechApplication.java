@@ -1,13 +1,14 @@
 package org.juntech.main;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 
-import java.net.InetAddress;
-
 @SpringBootApplication(scanBasePackages = {"org.juntech"})
+@MapperScan("org.juntech")
 public class JunTechApplication {
 
     public static void main(String[] args) {
